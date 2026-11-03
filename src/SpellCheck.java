@@ -40,7 +40,7 @@ public class SpellCheck {
 
    private static Collection<String> readDictionary(String filename)
            throws FileNotFoundException {
-      Collection<String> words = new LinkedList<String>();
+      Collection<String> words = new ArrayList<String>();
       Scanner in = new Scanner(new File(filename));
       // Use any characters other than a-z or A-Z as delimiters
       in.useDelimiter("[^a-zA-Z]+");
