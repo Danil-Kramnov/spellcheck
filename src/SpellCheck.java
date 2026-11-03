@@ -24,7 +24,7 @@ public class SpellCheck {
       // Read the dictionary and the document
 
       Collection<String> dictionaryWords = readDictionary("words.txt");
-      //Set<String> documentWords = readWords("alice30.txt");
+      System.out.println("Dictionary size (n): " + dictionaryWords.size());
       Set<String> documentWords = readWords("The_Headless_Horseman.txt"); // file to be spell-checked
 
       // Print all words that are in the document but not the dictionary
