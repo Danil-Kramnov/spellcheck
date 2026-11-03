@@ -23,14 +23,14 @@ public class SpellCheck {
            throws FileNotFoundException {
       // Read the dictionary and the document
 
-      Collection<String> dictionaryWords = readDictionary("words.txt");
+      List<String> dictionaryWords = readDictionary("words.txt");
       System.out.println("Dictionary size (n): " + dictionaryWords.size());
       Set<String> documentWords = readWords("The_Headless_Horseman.txt"); // file to be spell-checked
 
       // Print all words that are in the document but not the dictionary
       int numberMisspeltWords = 0;
       for (String word : documentWords) {
-         if (!dictionaryWords.contains(word)) {
+         if (Collections.binarySearch(dictionaryWords, word)<0) {
             numberMisspeltWords++;
             //System.out.println(word);
          }
@@ -38,15 +38,17 @@ public class SpellCheck {
       System.out.println("Number of misspelt words: " + numberMisspeltWords);
    }
 
-   private static Collection<String> readDictionary(String filename)
+   private static List<String> readDictionary(String filename)
            throws FileNotFoundException {
-      Collection<String> words = new ArrayList<String>();
+      List<String> words = new ArrayList<String>();
       Scanner in = new Scanner(new File(filename));
       // Use any characters other than a-z or A-Z as delimiters
       in.useDelimiter("[^a-zA-Z]+");
+
       while (in.hasNext()) {
          words.add(in.next().toLowerCase());
       }
+      Collections.sort(words);
       return words;
    }
 
