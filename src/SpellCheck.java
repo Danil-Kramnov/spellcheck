@@ -25,7 +25,8 @@ public class SpellCheck {
 
       Collection<String> dictionaryWords = readDictionary("words.txt");
       System.out.println("Dictionary size (n): " + dictionaryWords.size());
-      Set<String> documentWords = readWords("The_Headless_Horseman.txt"); // file to be spell-checked
+      Collection<String> documentWords = readWords("The_Headless_Horseman.txt"); // file to be spell-checked
+      System.out.println("Book size (m): " + readWords("The_Headless_Horseman.txt").size());
 
       // Print all words that are in the document but not the dictionary
       int numberMisspeltWords = 0;
@@ -40,7 +41,7 @@ public class SpellCheck {
 
    private static Collection<String> readDictionary(String filename)
            throws FileNotFoundException {
-      Collection<String> words = new HashSet<String>();
+      Collection<String> words = new Stack<String>();
       Scanner in = new Scanner(new File(filename));
       // Use any characters other than a-z or A-Z as delimiters
       in.useDelimiter("[^a-zA-Z]+");
@@ -58,9 +59,9 @@ public class SpellCheck {
     * @return a set with all lowercased words in the file. Here, a
     * word is a sequence of upper- and lowercase letters.
     */
-   public static Set<String> readWords(String filename)
+   public static Collection<String> readWords(String filename)
            throws FileNotFoundException {
-      Set<String> words = new TreeSet<String>();
+      Set<String> words = new HashSet<String>();
       Scanner in = new Scanner(new File(filename));
       // Use any characters other than a-z or A-Z as delimiters
       in.useDelimiter("[^a-zA-Z]+");
